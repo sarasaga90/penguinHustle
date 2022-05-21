@@ -1,10 +1,42 @@
 let config = {
     type: Phaser.AUTO,
-    width: 360,
-    height: 640,
-    scene: [loadingScene, homeScene, gameScene01, gameScene02, gameoverScene],
+    //width: 800,
+    //height: 600,
+    width: 960,
+    height: 320,
+    // VIGILA!!!! SI ET DEIXES PART DLE CODI, LES PROPIETATS NO CARREGUEN!!!!
+    physics: {
+        default: 'arcade',
+        arcade: {
+            gravity: { y: 300 },
+            debug: false
+        }
+    },
+    //scene: [loadingScene, homeScene, gameScene01, gameScene02, gameoverScene],
+    scene: [loadingScene, homeScene, gameScene01],
     title: 'Penguin Hustle',
     backgroundColor: 'ffffff'
-    };
+};
      
-    let game = new Phaser.Game(config);
+let game = new Phaser.Game(config);
+
+/* 
+ENLLOC D'UTILITZAR VARIABLES, SOC MÉS FAN D'UTILITZAR EL THIS. COM VEURÀS EN EL CODI, 
+EN AQUELLES ESCENES EN QUE AQUESTA VARIABLE S'UTILITZA MÉS DUN COP 
+*/
+
+/*
+var player;
+var stars;
+var bombs;
+var platforms;
+var cursors;
+var score = 0;
+var gameOver = false;
+var scoreText;
+//extra disparar
+var bullets;
+var lastFired = 0;
+var cursors;
+var fire;
+*/
