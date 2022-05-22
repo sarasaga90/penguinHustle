@@ -10,6 +10,13 @@ class gameScene01 extends Phaser.Scene {
     	console.log("Escena de Juego 01 cargada");
     }
 
+	    // Funció init per establir valors a 0 i false
+
+	init(){
+
+		this.score = 0;	  
+	}
+
     create ()
     {
         //audios     
