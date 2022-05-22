@@ -7,17 +7,17 @@ class gameScene01 extends Phaser.Scene {
     
     preload ()
     {
+		//no acabo d'entendre aquesta linia d'aqui avall...? per a què és?
     	console.log("Escena de Juego 01 cargada");
     }
 
-	 // Funció init per establir valors a 0 i false
 	init(){
 		this.score = 0;	  
 	}
 
     create ()
     {
-        //audios     
+        //audios dels nassos que no funcionen 
 		this.dingSnd = this.sound.add('ding');
 		this.jumpSnd = this.sound.add('jump');
 		this.crashSnd = this.sound.add('crash');
@@ -28,6 +28,9 @@ class gameScene01 extends Phaser.Scene {
 		
 		//plataformes base
 		this.platforms = this.physics.add.staticGroup();
+
+		//particula neu? no sembla funcionar així, desactivat
+		//this.particle = this.particleadd("snow");
 
 		//terreny
 		this.platforms.create(480, 315, 'ground');
@@ -69,14 +72,13 @@ class gameScene01 extends Phaser.Scene {
 		this.cursors = this.input.keyboard.createCursorKeys();
 		 
 		// creacio de peixos
-		this.stars = this.physics.add.group({
-			key: 'star',
+		this.fishes = this.physics.add.group({
+			key: 'fish',
 			repeat: 13,
 			setXY: { x: 12, y: 0, stepX: 70 }
-		//	set: {(Phaser.Math.FloatBetween(0.4, 0.8))};
 		});
 		 
-		this.stars.children.iterate(function (child) {
+		this.fishes.children.iterate(function (child) {
 		 
 			// Cada peix fa un rebot lleugerament diferent
 			child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
@@ -88,15 +90,13 @@ class gameScene01 extends Phaser.Scene {
 		// La puntuació
 		this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
 		 
-		// Xoca el jugador i les estrelles amb les plataformes
+		// collide sprite i peixos amb les plataformes
 		this.physics.add.collider(this.player, this.platforms);
-		this.physics.add.collider(this.stars, this.platforms);
+		this.physics.add.collider(this.fishes, this.platforms);
 		this.physics.add.collider(this.bombs, this.platforms);
 		 
-		// Comprova si el jugador col·lisiona amb alguna de les estrelles, si crida ho fa, a la funció collectStar
-		this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this);
-		 
-		this.physics.add.collider(this.player, this.bombs, this.hitBomb, null, this);
+		// colisions del sprite amb els peixos
+		this.physics.add.overlap(this.player, this.fishes, this.collectFish, null, this);
 		
 		/*-----un intent de neu que fa que em peti tot igual que l'audio aaaagh
 		var particles = scene.add.particles("snow");
@@ -119,7 +119,6 @@ class gameScene01 extends Phaser.Scene {
     update ()
     {
 
-    	
 		if (this.gameOver)
 		{
 			return;
@@ -153,16 +152,19 @@ class gameScene01 extends Phaser.Scene {
 	}
 		 
 	//recollir peixets
-	collectStar (player, star)
+	collectFish (player, fish)
 	{
-		star.disableBody(true, true);
+		fish.disableBody(true, true);
+
+		//so, aquesta es la línia que em peta sempre tot, el play. Desactivat de moment
+	//	dingSnd.play();
 		 
 		// Afegeix i actualitza la puntuació
 		this.score += 10;
 		this.scoreText.setText('score:' + this.score);
 		 
 		//passar al seguent nivell quan has pillat tots els peixos
-		if (this.stars.countActive(true) === 0)
+		if (this.fishes.countActive(true) === 0)
 		{	
 			this.scene.start('gameScene02');
 			sprite.setData('score', 'score');

@@ -75,7 +75,7 @@ loadingScene.preload = function(){
 	this.load.image('ground', 'assets/ground.png');
 	this.load.image('platform1', 'assets/plataforma1.png');
 	this.load.image('platform2', 'assets/plataforma2.png');
-	this.load.image('star', 'assets/fish1.png');
+	this.load.image('fish', 'assets/fish1.png');
 	this.load.image('bomb', 'assets/16bit-sand-dollar.png');
 	this.load.image('homebg', 'assets/homeBg.bmp');
 	this.load.image('startButton', 'assets/startButton.png');
