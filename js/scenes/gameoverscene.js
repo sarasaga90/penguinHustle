@@ -1,3 +1,8 @@
+/*
+
+T'HO COMENTO TOT, DONCS FALTA CODI EN LA ESCENA, AQUESTA NO T'ANIRÀ, HA D TENIR EL FORMAT DE LA HOMESCENE O DE LA GAMESCENE01,
+DONCS ÉS POT FER DE LES DUES MANERES. JO PREFEREIXO EL FORMAT GAMESCENE01, DONCS ÉS VEU MÉS CLAR TOT PLEGAT.
+
 gameScene.updateStats = function(statDiff) {
  
     var isGameOver = false;
@@ -21,3 +26,5 @@ gameScene.updateStats = function(statDiff) {
     gameScene.gameOver = function() {
     console.log('Game over');
     };
+
+*/
