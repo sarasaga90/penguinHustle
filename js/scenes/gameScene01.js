@@ -10,10 +10,8 @@ class gameScene01 extends Phaser.Scene {
     	console.log("Escena de Juego 01 cargada");
     }
 
-	    // Funció init per establir valors a 0 i false
-
+	 // Funció init per establir valors a 0 i false
 	init(){
-
 		this.score = 0;	  
 	}
 
@@ -24,15 +22,12 @@ class gameScene01 extends Phaser.Scene {
 		this.jumpSnd = this.sound.add('jump');
 		this.crashSnd = this.sound.add('crash');
         this.music = this.sound.add ('bgm1');
-		
 
 		// fons
 		this.add.image(480, 160, 'sky');
 		
-		
 		//plataformes base
 		this.platforms = this.physics.add.staticGroup();
-		 
 
 		//terreny
 		this.platforms.create(480, 315, 'ground');
@@ -41,7 +36,6 @@ class gameScene01 extends Phaser.Scene {
 		this.platforms.create(280, 180, 'platform1');
 		this.platforms.create(780, 160, 'platform1');
 		this.platforms.create(550, 200, 'platform2');
-
 
 		//sprite
 		this.player = this.physics.add.sprite(50, 220, 'ping');
@@ -74,16 +68,17 @@ class gameScene01 extends Phaser.Scene {
 		// Events d'entrada amb el teclat
 		this.cursors = this.input.keyboard.createCursorKeys();
 		 
-		// Algunes estrelles per recollir, 12 en total, separades uniformement a 70 píxels al llarg de l'eix X
+		// creacio de peixos
 		this.stars = this.physics.add.group({
 			key: 'star',
 			repeat: 13,
 			setXY: { x: 12, y: 0, stepX: 70 }
+		//	set: {(Phaser.Math.FloatBetween(0.4, 0.8))};
 		});
 		 
 		this.stars.children.iterate(function (child) {
 		 
-			// Cada estrella fa un rebot lleugerament diferent
+			// Cada peix fa un rebot lleugerament diferent
 			child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
 		 
 		});
@@ -103,6 +98,21 @@ class gameScene01 extends Phaser.Scene {
 		 
 		this.physics.add.collider(this.player, this.bombs, this.hitBomb, null, this);
 		
+		/*-----un intent de neu que fa que em peti tot igual que l'audio aaaagh
+		var particles = scene.add.particles("snow");
+
+		particles.createEmitter({
+			frame: 'blue',
+			x: { min: 0, max: 800 },
+			y: 0,
+			lifespan: 2000,
+			speedY: { min: 200, max: 400 },
+			scale: { start: 0.4, end: 0 },
+			quantity: 4,
+			blendMode: 'ADD'
+			});
+
+			*/
 		
     }
 
@@ -115,6 +125,7 @@ class gameScene01 extends Phaser.Scene {
 			return;
 		}
 		 
+		//moviment sprite
 		if (this.cursors.left.isDown)
 		{
 			this.player.setVelocityX(-160);
@@ -141,6 +152,7 @@ class gameScene01 extends Phaser.Scene {
 		
 	}
 		 
+	//recollir peixets
 	collectStar (player, star)
 	{
 		star.disableBody(true, true);
@@ -149,23 +161,14 @@ class gameScene01 extends Phaser.Scene {
 		this.score += 10;
 		this.scoreText.setText('score:' + this.score);
 		 
+		//passar al seguent nivell quan has pillat tots els peixos
 		if (this.stars.countActive(true) === 0)
-		{
-			// Un nou lot d’estrelles per a col·leccionar
-			this.stars.children.iterate(function (child) {
-			 
-			child.enableBody(true, child.x, 0, true, true);
-			 
-			});
-			 
-			var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-			 
-			var bomb = this.bombs.create(x, 16, 'bomb');
-			bomb.setBounce(1);
-			bomb.setCollideWorldBounds(true);
-			bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
-			bomb.allowGravity = false;
+		{	
+			this.scene.start('gameScene02');
+			sprite.setData('score', 'score');
 		}
+		}
+
 
     }
 
@@ -177,7 +180,5 @@ class gameScene01 extends Phaser.Scene {
 		this.cameras.main.flash();
 		player.setTint(0xff0000);
 		player.anims.play('turn');
-		this.gameOver = true;
 	}
     
-}

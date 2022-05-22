@@ -1,30 +1,45 @@
-/*
 
-T'HO COMENTO TOT, DONCS FALTA CODI EN LA ESCENA, AQUESTA NO T'ANIRÀ, HA D TENIR EL FORMAT DE LA HOMESCENE O DE LA GAMESCENE01,
-DONCS ÉS POT FER DE LES DUES MANERES. JO PREFEREIXO EL FORMAT GAMESCENE01, DONCS ÉS VEU MÉS CLAR TOT PLEGAT.
+var gameoverScene = new Phaser.Scene('gameoverScene');
 
-gameScene.updateStats = function(statDiff) {
- 
-    var isGameOver = false;
-     
-    for (stat in statDiff) {
-    if (statDiff.hasOwnProperty(stat)) {
-    this.stats[stat] += statDiff[stat];
-     
-    if(this.stats[stat] < 0) {
-    isGameOver = true;
-    this.stats[stat] = 0;
-    }
-    }
-    }
-     
-    this.refreshHud();
-     
-    if(isGameOver) this.gameOver();
-    };
-     
-    gameScene.gameOver = function() {
-    console.log('Game over');
-    };
+lose_Scene.create = function()
+{
+	//Imatge
+	this.add.image(this.sys.game.config.width/2, 350, 'pantalla_gameover');
 
-*/
+
+	/*So
+	this.losemusic = this.sound.add('music_loser');
+	this.losemusic.play({ loop: true }); */
+
+
+	//Botó Interactiu
+   // this.click = this.sound.add('music_click');
+
+    this.gameButton = this.add.image(670, 590, 'startButton').setInteractive().setScale(.80);
+
+	this.gameButton.on('pointerdown', function (pointer) {
+
+		this.click.play();
+	//	this.losemusic.stop();
+    this.scene.pause();
+  	this.scene.start('gameScene01');
+
+
+	}, this);
+
+	//Botó Interactiu2
+	//	this.click = this.sound.add('music_click');
+
+		this.gameButton = this.add.image(670, 490, 'startButton').setInteractive().setScale(.80);
+
+		this.gameButton.on('pointerdown', function (pointer) {
+
+		this.click.play();
+		this.losemusic.stop();
+
+		this.scene.start('homeScene');
+
+
+		}, this);
+
+};

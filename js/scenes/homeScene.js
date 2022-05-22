@@ -22,7 +22,7 @@ homeScene.create = function(){
 	text.setOrigin(0.5, 0.1);
 		text.depth = 1;
 	
-	/*boto dels nassos
+	/*boto dels nassos que mho peta tot HELP
 	this.gameButton = this.add.image(480, 230, 'startButton').setInteractive();
 	this.gameButton.on('pointerdown', function (pointer) {
 	this.click.play();

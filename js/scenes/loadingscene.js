@@ -79,6 +79,11 @@ loadingScene.preload = function(){
 	this.load.image('bomb', 'assets/16bit-sand-dollar.png');
 	this.load.image('homebg', 'assets/homeBg.bmp');
 	this.load.image('startButton', 'assets/startButton.png');
+
+	//particula neu
+	this.load.image('snow', 'assets/snow.png');
+
+	//spritesheet
 	this.load.spritesheet('ping', 'assets/ping.png', { frameWidth: 32, frameHeight: 48 });
 
 	// audios
