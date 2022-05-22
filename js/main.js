@@ -20,6 +20,21 @@ let config = {
      
 let game = new Phaser.Game(config);
 
+/*Config música
+var musicConfig = {
+    mute: false,
+    volume: 1,
+    rate: 1,
+    detune: 0,
+    seek: 0,
+    loop: true,
+    delay: false,
+}
+
+//Variables d'escena
+var gameOver;
+var startGame;*/
+
 /* 
 ENLLOC D'UTILITZAR VARIABLES, SOC MÉS FAN D'UTILITZAR EL THIS. COM VEURÀS EN EL CODI, 
 EN AQUELLES ESCENES EN QUE AQUESTA VARIABLE S'UTILITZA MÉS DUN COP 

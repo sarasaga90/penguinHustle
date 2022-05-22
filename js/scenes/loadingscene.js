@@ -70,6 +70,7 @@ loadingScene.preload = function(){
 
 	/* --------------------- CARREGA D'ASSETS DEL VIDEOJOC ---------------------------------------------- */
 
+	//imatges
 	this.load.image('sky', 'assets/bgIceLevel1.bmp');
 	this.load.image('ground', 'assets/ground.png');
 	this.load.image('platform1', 'assets/plataforma1.png');
@@ -80,17 +81,12 @@ loadingScene.preload = function(){
 	this.load.image('startButton', 'assets/startButton.png');
 	this.load.spritesheet('ping', 'assets/ping.png', { frameWidth: 32, frameHeight: 48 });
 
-
-	// els dichosos audios
-	/* NO HAS AFEGIT ALS AASETS ELS SONS*/
-
-	/*
+	// audios
 	this.load.audio('ding', 'assets/audio/ding.mp3');
 	this.load.audio('jump', 'assets/audio/jump.mp3');
 	this.load.audio('bgm1', ['assets/audio/bgm1.mp3', 'bgm1.ogg']);
 	this.load.audio('crash', 'assets/audio/crash.mp3');
-	*/
-	 
+
 };
  
 loadingScene.create = function(){

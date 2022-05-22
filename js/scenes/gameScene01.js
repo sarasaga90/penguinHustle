@@ -7,48 +7,43 @@ class gameScene01 extends Phaser.Scene {
     
     preload ()
     {
-
-    	console.log("Escena de Juego 01 cargada.");
-
-
+    	console.log("Escena de Juego 01 cargada");
     }
 
     create ()
     {
-        //audios com a youtube
-        /* NO HAS AFEGIR ELS ASSETS, QUAN ELS AFEGEIXIS, POTS DESCOMENTAR EL CODI */
-        /*
+        //audios     
 		this.dingSnd = this.sound.add('ding');
 		this.jumpSnd = this.sound.add('jump');
 		this.crashSnd = this.sound.add('crash');
-		*/
+        this.music = this.sound.add ('bgm1');
+		
 
-		// Un fons senzill per al nostre joc
+		// fons
 		this.add.image(480, 160, 'sky');
 		
 		
-		// El grup de plataformes conté el terra i els 2 ressalts sobre els quals podem saltar
+		//plataformes base
 		this.platforms = this.physics.add.staticGroup();
 		 
 
-		// Aquí creem el terreny.
-		// Cal escalar-lo per a que s'adapti a l'amplada del joc (l'sprite original té una mida de 400x32)
+		//terreny
 		this.platforms.create(480, 315, 'ground');
 		 
-		// Ara crearem algunes plataformes
+		//plataformes
 		this.platforms.create(280, 180, 'platform1');
 		this.platforms.create(780, 160, 'platform1');
 		this.platforms.create(550, 200, 'platform2');
 
 
-		// El jugador i la seva configuració
+		//sprite
 		this.player = this.physics.add.sprite(50, 220, 'ping');
 		 
-		// Propietats de la física del jugador. Afegeix un petit rebot al jugador en caure.
+		//rebot sprite
 		this.player.setBounce(0.2);
 		this.player.setCollideWorldBounds(true);
 		 
-		// Les animacions dels nostres jugadors, girant, caminant a l’esquerra i caminant a la dreta.
+		//animacions sprite
 		this.anims.create({
 			key: 'left',
 			frames: this.anims.generateFrameNumbers('ping', { start: 0, end: 3 }),
@@ -145,7 +140,7 @@ class gameScene01 extends Phaser.Scene {
 		 
 		// Afegeix i actualitza la puntuació
 		this.score += 10;
-		this.scoreText.setText('Score: ' + this.score);
+		this.scoreText.setText('score:' + this.score);
 		 
 		if (this.stars.countActive(true) === 0)
 		{
@@ -167,16 +162,15 @@ class gameScene01 extends Phaser.Scene {
 
     }
 
+	
+	//Tocar bomba
     hitBomb (player, bomb)
 	{
 		this.physics.pause();
-		 
+		this.cameras.main.flash();
 		player.setTint(0xff0000);
-		 
 		player.anims.play('turn');
-		 
 		this.gameOver = true;
-
 	}
     
 }
