@@ -2,7 +2,7 @@ var loadingScene = new Phaser.Scene('Loading');
  
 loadingScene.preload = function(){
 
-	this.load.image ('pantalla_load', 'assets/pantalla_carrega.png');
+	this.load.image ('loading', 'assets/startButton.png');
  
 	var progressBar = this.add.graphics();
 	var progressBox = this.add.graphics();
@@ -95,7 +95,7 @@ loadingScene.preload = function(){
  
 loadingScene.create = function(){
  
- 	var pantalla_load = this.add.image(this.sys.game.config.width/2, this.sys.game.config.height/2, 'pantalla_load').setInteractive();
+ 	var pantalla_load = this.add.image(this.sys.game.config.width/2, this.sys.game.config.height/2, 'loading').setInteractive();
 
 	pantalla_load.on('pointerdown', function(){
 
