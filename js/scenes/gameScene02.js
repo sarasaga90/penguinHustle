@@ -20,8 +20,9 @@ class gameScene02 extends Phaser.Scene {
 
     create ()
     {
+
 //cabriola perque funcioni la musica
-    	this.music =  this.sound.add('bgm2', {
+    	this.music_scene2 =  this.sound.add('bgm2', {
 			volume: 0.5,
 			loop: true
 		});
@@ -29,19 +30,22 @@ class gameScene02 extends Phaser.Scene {
 		if (!this.sound.locked)
 		{
 			// already unlocked so play
-			this.music.play();
+			this.music_scene2.play();
 		}
 		else
 		{
 			// wait for 'unlocked' to fire and then play
 			this.sound.once(Phaser.Sound.Events.UNLOCKED, () => {
-				this.music.play();
+				this.music_scene2.play();
 			})
 		}
 
 		this.dingSnd = this.sound.add('ding');
 		this.jumpSnd = this.sound.add('jump');
 		this.crashSnd = this.sound.add('crash');
+
+        //Marcador en pantalla + Level complet
+        console.log(this.score + ' ' + this.isLevelComplete);
 
 		// fons
 		this.add.image(480, 160, 'sky');
@@ -62,8 +66,6 @@ class gameScene02 extends Phaser.Scene {
 
 		//sprite
 		this.player = this.physics.add.sprite(50, 220, 'ping');
-        player.setTint(0xff0000);
-
 		 
 		//rebot sprite
 		this.player.setBounce(0.2);
@@ -110,7 +112,7 @@ class gameScene02 extends Phaser.Scene {
 		this.bombs = this.physics.add.group();
 		 
 		// La puntuació
-		this.scoreText = this.add.text(16, 16, 'peixets: 0', { fontSize: '32px', fill: '#000' });
+        scoreText = this.add.text(16, 16, 'oeixets: ' + this.score, { fontSize: '32px', fill: '#000' });
 		 
 		// collide sprite i peixos amb les plataformes
 		this.physics.add.collider(this.player, this.platforms);
@@ -141,10 +143,20 @@ class gameScene02 extends Phaser.Scene {
     update ()
     {
 
-		if (this.gameOver)
-		{
-			return;
-		}
+        console.log(this.score);
+
+        //Level complet
+        if(this.isLevelComplete)
+        {
+            this.music_scene2.stop();
+            this.scene.start('homeScene');
+        }
+        //gameOver
+        if (gameOver)
+        {
+          this.music_scene2.stop();
+          this.scene.start('gameoverScene');
+        }
 		 
 		//moviment sprite
 		if (this.cursors.left.isDown)
@@ -188,18 +200,18 @@ class gameScene02 extends Phaser.Scene {
 		this.score += 1;
 		this.scoreText.setText('peixets: ' + this.score);
 		 
-		//passar al seguent nivell quan has pillat tots els peixos
-		if (this.fishes.countActive(true) === 0)
+		//guanyar el joc al arribar a 100 peixos
+		if (this.score.countActive(true) === 10)
 		{	
-			this.scene.start('gameScene02', { score: this.score });
-			//this.sprite.setData('score', 'score');
+			this.music_scene2.stop();
+			this.gameOver = true;
 		}
 
 
 
     }
 
-    /*	
+
 	//Tocar bomba
     hitBomb (player, bomb)
 	{
@@ -207,7 +219,9 @@ class gameScene02 extends Phaser.Scene {
 		this.cameras.main.flash();
 		player.setTint(0xff0000);
 		player.anims.play('turn');
+        this.isLevelComplete = true;
+
 	}
-	*/
+	
     
 }

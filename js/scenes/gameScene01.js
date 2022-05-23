@@ -13,6 +13,8 @@ class gameScene01 extends Phaser.Scene {
 
 	init(){
 		this.score = 0;	  
+		this.isLevelComplete = false;
+
 	}
 
     create ()
@@ -136,6 +138,19 @@ class gameScene01 extends Phaser.Scene {
     update ()
     {
 
+        //Level complet
+        if(this.isLevelComplete)
+        {
+            this.music_scene1.stop();
+            this.scene.start('gameScene02', { score: this.score });
+        }
+        //Gameover
+        if (gameOver)
+        {
+          this.music_scene1.stop();
+          this.scene.start('gameoverScene');
+        }
+
 		if (this.gameOver)
 		{
 			return;
@@ -175,9 +190,6 @@ class gameScene01 extends Phaser.Scene {
 		this.dingSnd.play();
 
 		fish.disableBody(true, true);
-
-		//so, aquesta es la línia que em peta sempre tot, el play. Desactivat de moment
-	//	dingSnd.play();
 		 
 		// Afegeix i actualitza la puntuació
 		this.score += 1;
@@ -187,8 +199,7 @@ class gameScene01 extends Phaser.Scene {
 		if (this.fishes.countActive(true) === 0)
 		{	
 			this.music_scene1.stop();
-			this.scene.start('gameScene02');
-			//this.sprite.setData('score', 'score');
+			this.isLevelComplete = true;
 		}
 
 
