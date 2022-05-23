@@ -23,6 +23,6 @@ homeScene.create = function(){
 		text.depth = 1;
 
 	bg.on('pointerdown', function(){
-		this.scene.start('gameScene02');
+		this.scene.start('gameScene01');
 	}, this);
 }

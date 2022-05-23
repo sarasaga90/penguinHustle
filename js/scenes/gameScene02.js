@@ -143,9 +143,9 @@ class gameScene02 extends Phaser.Scene {
     update ()
     {
 
-        console.log(this.score);
+     /*  console.log(this.score);
 
-        //Level complet
+		  //Level complet
         if(this.isLevelComplete)
         {
             this.music_scene2.stop();
@@ -157,7 +157,13 @@ class gameScene02 extends Phaser.Scene {
           this.music_scene2.stop();
           this.scene.start('gameoverScene');
         }
-		 
+		 */
+
+		if (this.gameOver)
+		{
+			return;
+		}
+
 		//moviment sprite
 		if (this.cursors.left.isDown)
 		{
@@ -204,7 +210,7 @@ class gameScene02 extends Phaser.Scene {
 		if (this.score.countActive(true) === 10)
 		{	
 			this.music_scene2.stop();
-			this.gameOver = true;
+			this.isLevelComplete = true;
 		}
 
 
@@ -219,7 +225,7 @@ class gameScene02 extends Phaser.Scene {
 		this.cameras.main.flash();
 		player.setTint(0xff0000);
 		player.anims.play('turn');
-        this.isLevelComplete = true;
+        this.gameOver = true;
 
 	}
 	
