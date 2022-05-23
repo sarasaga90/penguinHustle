@@ -1,28 +1,14 @@
 var gameoverScene = new Phaser.Scene('gameoverScene');
+ 
+gameoverScene.create = function(){
 
-lose_Scene.create = function()
-{
-	//Imatge
-	this.add.image(this.sys.game.config.width/2, 350, 'bgGameover');
+	var bg = this.add.sprite(0, 0, 'gameoverBg').setInteractive();
+	bg.setOrigin(0, 0);
 
-    //boto reintentar
-    this.gameButton = this.add.image(670, 590, 'startButton').setInteractive().setScale(.80);
+	var gameW = this.sys.game.config.width;
+	var gameH = this.sys.game.config.height;
 
-	this.gameButton.on('pointerdown', function (pointer) {
-	this.click.play();
-    this.scene.pause();
-  	this.scene.start('gameScene01');
-
+	bg.on('pointerdown', function(){
+		this.scene.start('gameScene02');
 	}, this);
-
-
-	//Botó menu
-	this.gameButton = this.add.image(670, 490, 'startButton').setInteractive().setScale(.80);
-	this.gameButton.on('pointerdown', function (pointer) {
-	this.click.play();
-	this.scene.start('homeScene');
-
-
-	}, this);
-
-};
+}

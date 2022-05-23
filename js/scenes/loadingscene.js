@@ -78,6 +78,7 @@ loadingScene.preload = function(){
 	this.load.image('fish', 'assets/fish1.png');
 	this.load.image('bomb', 'assets/16bit-sand-dollar.png');
 	this.load.image('homebg', 'assets/homeBg.bmp');
+	this.load.image('gameoverBg', 'assets/gameoverBg.png');
 	this.load.image('startButton', 'assets/startButton.png');
 
 	//particula neu
