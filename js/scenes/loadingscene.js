@@ -90,6 +90,7 @@ loadingScene.preload = function(){
 	this.load.audio('ding', 'assets/audio/ding.mp3');
 	this.load.audio('jump', 'assets/audio/jump.mp3');
 	this.load.audio('bgm1', ['assets/audio/bgm1.mp3', 'bgm1.ogg']);
+	this.load.audio('bgm2', 'assets/audio/bgm2.mp3');
 	this.load.audio('crash', 'assets/audio/crash.mp3');
 
 };

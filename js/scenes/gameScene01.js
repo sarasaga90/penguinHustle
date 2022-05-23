@@ -17,11 +17,28 @@ class gameScene01 extends Phaser.Scene {
 
     create ()
     {
-        //audios dels nassos que no funcionen 
+//cabriola perque funcioni la musica
+    	this.music_scene01 =  this.sound.add('bgm1', {
+			volume: 0.5,
+			loop: true
+		});
+
+		if (!this.sound.locked)
+		{
+			// already unlocked so play
+			this.music_scene01.play();
+		}
+		else
+		{
+			// wait for 'unlocked' to fire and then play
+			this.sound.once(Phaser.Sound.Events.UNLOCKED, () => {
+				this.music_scene01.play();
+			})
+		}
+
 		this.dingSnd = this.sound.add('ding');
 		this.jumpSnd = this.sound.add('jump');
 		this.crashSnd = this.sound.add('crash');
-        this.music = this.sound.add ('bgm1');
 
 		// fons
 		this.add.image(480, 160, 'sky');
@@ -88,7 +105,7 @@ class gameScene01 extends Phaser.Scene {
 		this.bombs = this.physics.add.group();
 		 
 		// La puntuació
-		this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+		this.scoreText = this.add.text(16, 16, 'peixets: 0', { fontSize: '32px', fill: '#000' });
 		 
 		// collide sprite i peixos amb les plataformes
 		this.physics.add.collider(this.player, this.platforms);
@@ -147,6 +164,7 @@ class gameScene01 extends Phaser.Scene {
 		if (this.cursors.up.isDown && this.player.body.touching.down)
 		{
 			this.player.setVelocityY(-330);
+			this.jumpSnd.play();
 		}
 		
 	}
@@ -154,27 +172,30 @@ class gameScene01 extends Phaser.Scene {
 	//recollir peixets
 	collectFish (player, fish)
 	{
+		this.dingSnd.play();
+
 		fish.disableBody(true, true);
 
 		//so, aquesta es la línia que em peta sempre tot, el play. Desactivat de moment
 	//	dingSnd.play();
 		 
 		// Afegeix i actualitza la puntuació
-		this.score += 10;
-		this.scoreText.setText('score:' + this.score);
+		this.score += 1;
+		this.scoreText.setText('peixets: ' + this.score);
 		 
 		//passar al seguent nivell quan has pillat tots els peixos
 		if (this.fishes.countActive(true) === 0)
 		{	
+			this.music_scene1.stop();
 			this.scene.start('gameScene02');
-			sprite.setData('score', 'score');
+			//this.sprite.setData('score', 'score');
 		}
-		}
+
 
 
     }
 
-	
+    /*	
 	//Tocar bomba
     hitBomb (player, bomb)
 	{
@@ -183,4 +204,6 @@ class gameScene01 extends Phaser.Scene {
 		player.setTint(0xff0000);
 		player.anims.play('turn');
 	}
+	*/
     
+}

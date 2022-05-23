@@ -12,8 +12,7 @@ let config = {
             debug: false
         }
     },
-    //scene: [loadingScene, homeScene, gameScene01, gameScene02, gameoverScene],
-    scene: [loadingScene, homeScene, gameScene01],
+    scene: [loadingScene, homeScene, gameScene01, gameScene02, gameoverScene],
     title: 'Penguin Hustle',
     backgroundColor: 'ffffff'
 };

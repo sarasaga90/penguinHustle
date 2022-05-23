@@ -30,6 +30,6 @@ homeScene.create = function(){
 	*/
 
 	bg.on('pointerdown', function(){
-		this.scene.start('gameScene01');
+		this.scene.start('gameScene02');
 	}, this);
 }
