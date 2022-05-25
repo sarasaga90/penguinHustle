@@ -1,71 +1,67 @@
 var loadingScene = new Phaser.Scene('Loading');
  
 loadingScene.preload = function(){
-
-	this.load.image ('loading', 'assets/startButton.png');
  
+	var bgBar = this.add.graphics();
+
+	var barW = 960;
+	var barH = 30;
+
+	bgBar.setPosition(480, 600);
+	bgBar.fillStyle(0xF5F5F5, 1);
+	bgBar.fillRect(0, 0, barW, barH);
+
 	var progressBar = this.add.graphics();
-	var progressBox = this.add.graphics();
-	 
-	progressBox.fillStyle(0x222222, 0.8);
-	progressBox.fillRect(240, 270, 320, 50);
-	 
+	progressBar.setPosition(200, 600);
+
 	var width = this.cameras.main.width;
 	var height = this.cameras.main.height;
-	var loadingText = this.make.text({
+
+	var loadingText = this.make.text(
+	{
 		x: width / 2,
-		y: height / 2 - 50,
-		text: 'Cargando...',
-		style: {
-			font: '20px monospace',
-			fill: '#ffffff'
+		y: height / 2,
+		text: 'LOADING...',
+		style:
+		{
+			font: '20px Arial',
+			fill: '#000000'
 		}
 	});
-	 
-	loadingText.setOrigin(0.5, 0.5);
-	 
-	var percentText = this.make.text({
+
+	loadingText.setPosition(625, 550);
+
+	var percentText = this.make.text(
+	{
 		x: width / 2,
-		y: height / 2 - 5,
+		y: height / 2,
 		text: '0%',
-		style: {
-			font: '18px monospace',
-			fill: '#ffffff'
+		style:
+		{
+			font: '20px Arial',
+			fill: '#000000'
 		}
 	});
-	 
-	percentText.setOrigin(0.5, 0.5);
-	 
-	var assetText = this.make.text({
-		x: width / 2,
-		y: height / 2 + 50,
-		text: '',
-		style: {
-			font: '18px monospace',
-			fill: '#ffffff'
-		}
-	});
-	 
-	assetText.setOrigin(0.5, 0.5);
-	 
-	this.load.on('progress', function (value) {
+
+	percentText.setPosition(200, 600);
+
+	this.load.on('progress', function(value)
+	{
 		percentText.setText(parseInt(value * 100) + '%');
 		progressBar.clear();
-		progressBar.fillStyle(0xffffff, 1);
-		progressBar.fillRect(250, 280, 300 * value, 30);
-	});
-	 
-	this.load.on('fileprogress', function (file) {
-		assetText.setText('Loading asset: ' + file.src);
-	});
-	 
+		progressBar.fillStyle(0x9AD98D, 1);
+		progressBar.fillRect(0, 0, value * barW, barH);
+
+	}, this);
+
+
 	this.load.on('complete', function () {
-		progressBar.destroy();
-		progressBox.destroy();
-		loadingText.destroy();
-		percentText.destroy();
-		assetText.destroy();
-	});
+            progressBar.destroy();
+            loadingText.destroy();
+            percentText.destroy();
+        });
+
+	this.load.image ('loading', 'assets/startButton.png');
 
 
 	/* --------------------- CARREGA D'ASSETS DEL VIDEOJOC ---------------------------------------------- */
@@ -79,6 +75,7 @@ loadingScene.preload = function(){
 	this.load.image('bomb', 'assets/16bit-sand-dollar.png');
 	this.load.image('homebg', 'assets/homeBg.bmp');
 	this.load.image('gameoverBg', 'assets/gameoverBg.png');
+	this.load.image('gameclearBg', 'assets/gameclearBg.png');
 	this.load.image('startButton', 'assets/startButton.png');
 
 	//particula neu

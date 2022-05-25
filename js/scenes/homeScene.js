@@ -5,6 +5,10 @@ homeScene.create = function(){
 	var bg = this.add.sprite(0, 0, 'homebg').setInteractive();
 	bg.setOrigin(0, 0);
 
+   //música que no sona...
+   this.menu_music = this.sound.add('bgm1');
+   this.menu_music.play;
+
 	var gameW = this.sys.game.config.width;
 	var gameH = this.sys.game.config.height;
 
@@ -25,4 +29,6 @@ homeScene.create = function(){
 	bg.on('pointerdown', function(){
 		this.scene.start('gameScene01');
 	}, this);
+
+	
 }
