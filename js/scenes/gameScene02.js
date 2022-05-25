@@ -145,21 +145,26 @@ class gameScene02 extends Phaser.Scene {
     update ()
     {
 
-     /*  console.log(this.score);
+    // console.log(this.score);
 
-		  //Level complet
+		//Level complet
         if(this.isLevelComplete)
         {
-            this.music_scene2.stop();
-            this.scene.start('homeScene');
+            this.music_scene1.stop();
+            this.scene.start('gameScene02', /*{ score: this.score }*/);
         }
-        //gameOver
-        if (gameOver)
+        //game over
+        if (this.gameOver)
         {
-          this.music_scene2.stop();
+          this.music_scene1.stop();
           this.scene.start('gameoverScene');
         }
-		 */
+
+		//game clear
+		if (this.gameClear)
+		{
+			this.scene.start('gameclearScene');
+		}
 
 		if (this.gameOver)
 		{

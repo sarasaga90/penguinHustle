@@ -139,23 +139,18 @@ class gameScene01 extends Phaser.Scene {
     update ()
     {
 
-		//Level complet --- NO SE PERQUE FA QUE NO ES VEGI LA IMATGE
+		//Level complet
         if(this.isLevelComplete)
         {
             this.music_scene1.stop();
             this.scene.start('gameScene02', /*{ score: this.score }*/);
         }
         //game over
-        if (gameOver)
+        if (this.gameOver)
         {
           this.music_scene1.stop();
           this.scene.start('gameoverScene');
         }
-
-		if (this.gameOver)
-		{
-			return;
-		}
 
 		//game clear
 		if (this.gameClear)
