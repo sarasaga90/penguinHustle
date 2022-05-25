@@ -9,7 +9,7 @@ let config = {
             debug: false
         }
     },
-    scene: [loadingScene, homeScene, gameScene01, gameScene02, /*gameclearScene, PER QUE EM PETA SI AFEGEIXO AQUEST?*/ gameoverScene],
+    scene: [loadingScene, homeScene, gameScene01, gameScene02, gameclearScene, gameoverScene],
     title: 'Penguin Hustle',
     backgroundColor: 'ffffff'
 };
