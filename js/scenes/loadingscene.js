@@ -90,7 +90,8 @@ loadingScene.preload = function(){
 	this.load.audio('bgm1', ['assets/audio/bgm1.mp3', 'bgm1.ogg']);
 	this.load.audio('bgm2', 'assets/audio/bgm2.mp3');
 	this.load.audio('crash', 'assets/audio/crash.mp3');
-
+	this.load.audio('gameovermusic', 'sunfish-breath00.mp3');
+	
 };
  
 loadingScene.create = function(){
