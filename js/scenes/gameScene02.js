@@ -16,13 +16,10 @@ class gameScene02 extends Phaser.Scene {
         this.score = data.score;
         this.isLevelComplete = false;
 		this.gameClear = false;
-
-  
       }
 
     create ()
     {
-
 //cabriola perque funcioni la musica
     	this.music_scene2 =  this.sound.add('bgm2', {
 			volume: 0.5,
