@@ -5,18 +5,18 @@ let config = {
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 300 },
+            gravity: { y: 350 },
             debug: false
         }
     },
-    scene: [loadingScene, homeScene, gameScene01, gameScene02, gameoverScene],
+    scene: [loadingScene, homeScene, gameScene01, gameScene02, /*gameclearScene, PER QUE EM PETA SI AFEGEIXO AQUEST?*/ gameoverScene],
     title: 'Penguin Hustle',
     backgroundColor: 'ffffff'
 };
      
 let game = new Phaser.Game(config);
 
-//Variables d'escena
+//Variables
 var gameOver;
 var isLevelComplete;
 var gameClear;

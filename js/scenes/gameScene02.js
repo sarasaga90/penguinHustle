@@ -15,6 +15,8 @@ class gameScene02 extends Phaser.Scene {
 
         this.score = data.score;
         this.isLevelComplete = false;
+		this.gameClear = false;
+
   
       }
 
@@ -210,7 +212,7 @@ class gameScene02 extends Phaser.Scene {
 		if (this.score.countActive(true) === 10)
 		{	
 			this.music_scene2.stop();
-			this.isLevelComplete = true;
+			this.gameClear = true;
 		}
 
 

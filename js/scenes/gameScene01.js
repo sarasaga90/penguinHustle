@@ -13,7 +13,8 @@ class gameScene01 extends Phaser.Scene {
 
 	init(){
 		this.score = 0;	  
-	//	this.isLevelComplete = false;
+		this.isLevelComplete = false;
+		this.gameClear = false;
 
 	}
 
@@ -117,7 +118,7 @@ class gameScene01 extends Phaser.Scene {
 		// colisions del sprite amb els peixos
 		this.physics.add.overlap(this.player, this.fishes, this.collectFish, null, this);
 		
-		/*-----un intent de neu que fa que em peti tot igual que l'audio aaaagh
+		/*-----un intent de neu que fa que em peti tot
 		var particles = scene.add.particles("snow");
 
 		particles.createEmitter({
@@ -138,22 +139,28 @@ class gameScene01 extends Phaser.Scene {
     update ()
     {
 
-       /*Level complet --- NO SE PERQUE FA QUE NO ES VEGI LA IMATGE
+		//Level complet --- NO SE PERQUE FA QUE NO ES VEGI LA IMATGE
         if(this.isLevelComplete)
         {
             this.music_scene1.stop();
-            this.scene.start('gameScene02', { score: this.score });
+            this.scene.start('gameScene02', /*{ score: this.score }*/);
         }
-        //Gameover
+        //game over
         if (gameOver)
         {
           this.music_scene1.stop();
           this.scene.start('gameoverScene');
         }
-*/
+
 		if (this.gameOver)
 		{
 			return;
+		}
+
+		//game clear
+		if (this.gameClear)
+		{
+			this.scene.start('gameclearScene');
 		}
 		 
 		//moviment sprite
