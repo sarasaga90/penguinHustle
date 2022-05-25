@@ -9,6 +9,6 @@ gameoverScene.create = function(){
 	var gameH = this.sys.game.config.height;
 
 	bg.on('pointerdown', function(){
-		this.scene.start('gameScene02');
+		this.scene.start('homeScene');
 	}, this);
 }
